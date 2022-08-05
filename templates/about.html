@@ -5,9 +5,73 @@
     <title></title>
     <style>
 
+.about-section {
+  padding: 50px;
+  text-align: center;
+  background-color: #474e5d;
+  color: white;
+}
+
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+
+}
+
+div.about-section {
+  font-size: 30px;
+}
+
+
+body {
+
+  background-size: 300% 300%;
+  background-image: linear-gradient(
+        -45deg, 
+        rgba(70,173,227,1) 0%, 
+        rgba(87,111,230,1) 25%, 
+        rgba(152,68,183,1) 51%, 
+        rgba(255,53,127,1) 100%
+  );  
+  animation: AnimateBG 20s ease infinite;
+}
+
+@keyframes AnimateBG { 
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
 </style>
 </head>
 <body>
+<div class="about-section">
+  <h1>About Us Page</h1>
+  <p>what is wishing well?</p>
+
+<p>
+
+Wishing well is a platform connecting all women and men in our region that are passionate about giving back to their society by volunteering </p>
+<p>
+
+Wishing well’s vision is to promote contribution to the community in the region whether in a formal or informal way. Wishing well provides recognition to the volunteers at a national level.
+
+</p>
+<p>
+From the moment you join us you will be given access to so a variety of benefits in many different businesses participating in this project 
+</p>
+<p>
+
+All who give a little more also receive more, so join us and help make volunteering the new norm in this region
+
+</p>
+</div>
+
+<img src="/static/w.png"  class="center">
 
     </body>
+
 </html>
