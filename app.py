@@ -62,6 +62,8 @@ def signup():
             return error
     return render_template('signup.html')
 
+    
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = ""
