@@ -42,17 +42,19 @@ a {
 }
 ul {
   background-color: black;
-}
-ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: #333;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
 }
 
 li {
   float: left;
+  flex: 1;
 }
 
 li a {
@@ -64,7 +66,7 @@ li a {
 }
 
 li a:hover {
-  background-color: #111;
+  background-color: #a920cd;
 
 }
 .center {
@@ -86,6 +88,6 @@ li a:hover {
   <li><a href="/card">users with card</a></li>
 </ul>
 
-<img src="/static/w.png"  class="center">
+<img src="/static/images/wishingwell-logo.png"  class="center">
     </body>
 </html>
