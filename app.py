@@ -66,21 +66,25 @@ def signup():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    error = ""
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
         try:
             login_session['user'] = auth.sign_in_with_email_and_password(email, password)
+            print(login_session['user']['localId'])
             return redirect(url_for('home'))
         except:
-            error = "Authentication failed"
-            return error
+            print('ERROR')
     else: 
         return render_template('login.html')
 
 
-
+@app.route('/logout')
+def logout():
+    if 'user' in login_session:
+        login_session['user'] = None
+        auth.current_user = None
+    return redirect(url_for('home'))
 
 
 
