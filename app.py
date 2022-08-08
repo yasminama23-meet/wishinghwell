@@ -37,9 +37,6 @@ app.config['SECRET_KEY'] = 'super-secret-key'
 @app.route('/')
 def home():
     return render_template('index.html')
- 
-
-
 
 
 
@@ -53,7 +50,7 @@ def signup():
         if password == other_password:
             try:
                 login_session['user'] = auth.create_user_with_email_and_password(email, password)
-                user = {"usename": username, "email": email, "password": password}
+                user = {"username": username, "email": email, "password": password}
                 db.child("Users").child(login_session['user']['localId']).set(user)
                 return redirect(url_for('home'))
             except:
@@ -79,6 +76,7 @@ def login():
         return render_template('login.html')
 
 
+
 @app.route('/logout')
 def logout():
     if 'user' in login_session:
@@ -88,10 +86,29 @@ def logout():
 
 
 
+@app.route('/upload', methods=['GET', 'POST'])
+def upload_image():
+    if request.method == 'POST':
+        title = request.form['title']
+        photo = request.form['photo']
+        desc  = request.form['desc']
+        username = db.child("Users").child(login_session['user']['localId']).child('username').get().val()
+        load = {'title':title, 'photo':photo, 'description':desc}
+        # try:
+        db.child("Uploads").set(load)
+
+
+        return redirect(url_for('home'))
+    return render_template('upload.html')
+
+
+
+
 
 @app.route('/about')
 def about():
     return render_template('about.html')
+
 
 
 @app.route('/cherish')
@@ -99,9 +116,11 @@ def cherish():
     return render_template('cherish.html')
 
 
+
 @app.route('/card')
 def card():
     return render_template('card.html')
+
 
 #Code goes above here
 

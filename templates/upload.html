@@ -8,5 +8,40 @@
 
 
 
-    </body>
+<ul>
+  <li><a href="/login">login</a></li>
+  <li><a href="/logout">log out</a></li>
+  <li><a href="/signup">home</a></li>
+  <li><a href="/cherish">cherish users</a></li>
+  <li><a href="/about">About us</a></li>
+  <li><a href="/card">users with card</a></li>
+</ul>
+<br>
+
+<!-- The Modal (contains the Sign Up form) -->
+<div id="id01" class="modal">
+  <span class="close" title="Close Modal"></span>
+  <form class="modal-content" method='POST' action="/upload">
+    <div class="container">
+      <h1>upload photo</h1>
+      <p>Please fill in this form to create an account.</p>
+      <hr>
+      <label for="title"><b>Title</b></label>
+      <input type="text" placeholder="Title" name="title" required>
+
+      <label for="photo"><b>photo url</b></label>
+      <input type="text" placeholder="(has to be on the internet)" name="photo" required>
+
+      <label for="desc"><b>description</b></label>
+      <input type="text" placeholder="Enter Description" name="desc" required>
+
+    
+      <div class="clearfix">
+      
+        <button type="submit" class="signup">Sign Up</button>
+      </div>
+    </div>
+  </form>
+
+  </body>
 </html>
