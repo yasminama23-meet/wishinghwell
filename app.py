@@ -35,7 +35,7 @@ app.config['SECRET_KEY'] = 'super-secret-key'
 
 
 @app.route('/')
-def index():
+def home():
     return render_template('index.html')
  
 
@@ -45,21 +45,21 @@ def index():
 
 @app.route('/signup', methods=['GET','POST'])
 def signup():
-    error = ""
     if request.method == 'POST':
         email = request.form['email']
-        password = request.form['password']
+        password = request.form['pass1']
+        other_password = request.form['pass2']
         username = request.form['username']
-        try:
-            login_session['user'] = auth.create_user_with_email_and_password(email, password)
-
-            user = {"usename": username, "email": email, "password": password}
-            db.child("Users").child(login_session['user']['localId']).set(user)
-
-            return redirect(url_for('index'))
-        except:
-            error = "Authentication failed"
-            return error
+        if password == other_password:
+            try:
+                login_session['user'] = auth.create_user_with_email_and_password(email, password)
+                user = {"usename": username, "email": email, "password": password}
+                db.child("Users").child(login_session['user']['localId']).set(user)
+                return redirect(url_for('home'))
+            except:
+                print('ERROR')
+        else:
+            print('not same password')
     return render_template('signup.html')
 
     
@@ -72,7 +72,7 @@ def login():
         password = request.form['password']
         try:
             login_session['user'] = auth.sign_in_with_email_and_password(email, password)
-            return redirect(url_for('index'))
+            return redirect(url_for('home'))
         except:
             error = "Authentication failed"
             return error
