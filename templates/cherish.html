@@ -5,9 +5,34 @@
     <title></title>
     <style>
 
+button {
+  background-color: darkviolet;
+  color: white;
+  padding: 50px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  font-size: 40px;
+}
+
+button:hover {
+  opacity:1;
+}
 </style>
 </head>
 <body>
 
+<button onclick="document.getElementById('b').style.display='block'">grant your wishes!</button>
+
+<button onclick="document.getElementById('y').style.display='block'">where to volunteer</button>
+
+
+
+<div id="b" class="modal">
+  <span onclick="document.getElementById('b').style.display='none'" >
+  <form class="modal-content" action="/action_page.php">
+    <div class="container">
     </body>
 </html>
