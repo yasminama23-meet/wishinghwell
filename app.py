@@ -93,14 +93,17 @@ def upload_image():
         photo = request.form['photo']
         desc  = request.form['desc']
         username = db.child("Users").child(login_session['user']['localId']).child('username').get().val()
-        load = {'title':title, 'photo':photo, 'description':desc}
-        # try:
-        db.child("Uploads").set(load)
-
-
-        return redirect(url_for('home'))
+        load = {'title':title, 'photo':photo, 'description':desc, 'user':username}
+        db.child("Uploads").push(load)
+        return redirect(url_for('posts'))
     return render_template('upload.html')
 
+
+@app.route('/posts')
+def posts():
+    total_posts = db.child('Uploads').get().val()
+    total_names = total_posts.keys()
+    return render_template('posts.html', names=total_names, posts=total_posts)
 
 
 
