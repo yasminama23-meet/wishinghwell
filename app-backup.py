@@ -35,7 +35,7 @@ app.config['SECRET_KEY'] = 'super-secret-key'
 
 
 @app.route('/')
-def home():
+def index():
     return render_template('index.html')
  
 
@@ -47,44 +47,39 @@ def home():
 def signup():
     if request.method == 'POST':
         email = request.form['email']
-        password = request.form['pass1']
-        other_password = request.form['pass2']
+        password = request.form['password']
         username = request.form['username']
-        if password == other_password:
-            try:
-                login_session['user'] = auth.create_user_with_email_and_password(email, password)
-                user = {"usename": username, "email": email, "password": password}
-                db.child("Users").child(login_session['user']['localId']).set(user)
-                return redirect(url_for('home'))
-            except:
-                print('ERROR')
-        else:
-            print('not same password')
+        try:
+            login_session['user'] = auth.create_user_with_email_and_password(email, password)
+
+            user = {"usename": username, "email": email, "password": password}
+            db.child("Users").child(login_session['user']['localId']).set(user)
+
+            return redirect(url_for('index'))
+        except:
+            error = "Authentication failed"
+            return error
     return render_template('signup.html')
 
     
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    error = ""
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
         try:
             login_session['user'] = auth.sign_in_with_email_and_password(email, password)
-            print(login_session['user']['localId'])
-            return redirect(url_for('home'))
+            return redirect(url_for('index'))
         except:
-            print('ERROR')
+            error = "Authentication failed"
+            return error
     else: 
         return render_template('login.html')
 
 
-@app.route('/logout')
-def logout():
-    if 'user' in login_session:
-        login_session['user'] = None
-        auth.current_user = None
-    return redirect(url_for('home'))
+
 
 
 

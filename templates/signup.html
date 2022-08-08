@@ -144,6 +144,7 @@ button:hover{
 
 <ul>
   <li><a href="/login">login</a></li>
+  <li><a href="/logout">log out</a></li>
   <li><a href="/signup">home</a></li>
   <li><a href="/cherish">cherish users</a></li>
   <li><a href="/about">About us</a></li>
@@ -155,7 +156,7 @@ button:hover{
 <!-- The Modal (contains the Sign Up form) -->
 <div id="id01" class="modal">
   <span class="close" title="Close Modal"></span>
-  <form class="modal-content" action="/action_page.php">
+  <form class="modal-content" method='POST' action="/signup">
     <div class="container">
       <h1>Sign Up</h1>
       <p>Please fill in this form to create an account.</p>
@@ -163,11 +164,14 @@ button:hover{
       <label for="email"><b>Email</b></label>
       <input type="text" placeholder="Enter Email" name="email" required>
 
+      <label for="username"><b>Username</b></label>
+      <input type="text" placeholder="Username" name="username" required>
+
       <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
+      <input type="password" placeholder="Enter Password" name="pass1" required>
 
       <label for="psw-repeat"><b>Repeat Password</b></label>
-      <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+      <input type="password" placeholder="Repeat Password" name="pass2" required>
 
     
 
