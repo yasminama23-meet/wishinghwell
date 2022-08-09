@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+  {% for name in names %}
+  <h1>{{posts[name]['title']}}</h1>
+  <img src={{posts[name]['photo']}} style="width: 100px;">
+  <p>{{posts[name]['description']}}</p>
+
+
+  {% endfor %}
+
+
+
+</body>
+
+</html>

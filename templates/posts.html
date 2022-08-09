@@ -2,18 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>wishing well</title>
+    <style type="text/css">
+      #posts {
+        display: flex;
+      }
+
+      .post {
+        border: 5px purple solid;
+        margin: 5px;
+        padding: 3px;
+        width: 200px;
+      }
+
+body {
+
+  background-color: blueviolet ;
+
+}
+
+
+    </style>
+
 </head>
 <body>
 
+  <div id='posts'>
   {% for name in names %}
+  <div class='post'>
   <h1>{{posts[name]['title']}}</h1>
-  <img src={{posts[name]['photo']}} style="width: 100px;">
+  <img src={{posts[name]['photo']}} style="width: 175px; height: 175px; object-fit: contain;">
   <p>{{posts[name]['description']}}</p>
-
-
+  </div>
   {% endfor %}
-
+  </div>
 
 
 </body>
