@@ -33,14 +33,106 @@ app.config['SECRET_KEY'] = 'super-secret-key'
 
 
 
-
 @app.route('/')
+def home():
+    return render_template('index.html')
+
+
+
+@app.route('/signup', methods=['GET','POST'])
+def signup():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['pass1']
+        other_password = request.form['pass2']
+        username = request.form['username']
+        if password == other_password:
+            try:
+                login_session['user'] = auth.create_user_with_email_and_password(email, password)
+                user = {"username": username, "email": email, "password": password}
+                db.child("Users").child(login_session['user']['localId']).set(user)
+                return redirect(url_for('home'))
+            except:
+                print('ERROR')
+        else:
+            print('not same password')
+    return render_template('signup.html')
+
+    
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+        try:
+            login_session['user'] = auth.sign_in_with_email_and_password(email, password)
+            print(login_session['user']['localId'])
+            return redirect(url_for('home'))
+        except:
+            print('ERROR')
+    else: 
+        return render_template('login.html')
+
+
+
+@app.route('/logout')
+def logout():
+    if 'user' in login_session:
+        login_session['user'] = None
+        auth.current_user = None
+    return redirect(url_for('home'))
+
+
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload_image():
+    if request.method == 'POST':
+        title = request.form['title']
+        photo = request.form['photo']
+        desc  = request.form['desc']
+        username = db.child("Users").child(login_session['user']['localId']).child('username').get().val()
+        load = {'title':title, 'photo':photo, 'description':desc, 'user':username}
+        db.child("Uploads").push(load)
+        return redirect(url_for('posts'))
+    return render_template('upload.html')
+
+
+@app.route('/posts')
+def posts():
+    total_posts = db.child('Uploads').get().val()
+    total_names = total_posts.keys()
+    return render_template('posts.html', names=total_names, posts=total_posts)
+
+
+
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+
+
+@app.route('/cherish')
+def cherish():
+    return render_template('cherish.html')
+
+
+
+@app.route('/card')
+def card():
+    return render_template('card.html')
+
+
+
+
+@app.route('/ar')
 def homear():
     return render_template('indexar.html')
 
 
 
-@app.route('/signup', methods=['GET','POST'])
+@app.route('/signup/ar', methods=['GET','POST'])
 def signupar():
     if request.method == 'POST':
         email = request.form['email']
@@ -61,7 +153,7 @@ def signupar():
 
     
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login/ar', methods=['GET', 'POST'])
 def loginar():
     if request.method == 'POST':
         email = request.form['email']
@@ -77,7 +169,7 @@ def loginar():
 
 
 
-@app.route('/logout')
+@app.route('/logout/ar')
 def logoutar():
     if 'user' in login_session:
         login_session['user'] = None
@@ -86,7 +178,7 @@ def logoutar():
 
 
 
-@app.route('/upload', methods=['GET', 'POST'])
+@app.route('/upload/ar', methods=['GET', 'POST'])
 def upload_imagear():
     if request.method == 'POST':
         title = request.form['title']
@@ -99,7 +191,7 @@ def upload_imagear():
     return render_template('uploadar.html')
 
 
-@app.route('/posts')
+@app.route('/posts/ar')
 def postsar():
     total_posts = db.child('Uploads').get().val()
     total_names = total_posts.keys()
@@ -108,19 +200,19 @@ def postsar():
 
 
 
-@app.route('/about')
+@app.route('/about/ar')
 def aboutar():
     return render_template('aboutar.html')
 
 
 
-@app.route('/cherish')
+@app.route('/cherish/ar')
 def cherishar():
     return render_template('cherishar.html')
 
 
 
-@app.route('/card')
+@app.route('/card/ar')
 def cardar():
     return render_template('cardar.html')
 
