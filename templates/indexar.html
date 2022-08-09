@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+
+
+body {
+
+  background-size: 300% 300%;
+  background-image: linear-gradient(
+        -45deg, 
+        rgba(70,173,227,1) 0%, 
+        rgba(87,111,230,1) 25%, 
+        rgba(152,68,183,1) 51%, 
+        rgba(255,53,127,1) 100%
+  );  
+  animation: AnimateBG 20s ease infinite;
+}
+
+@keyframes AnimateBG { 
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+
+
+
+li {
+  display: inline;
+}
+li {
+  float: left;
+}
+
+a {
+  display: block;
+  padding: 8px;
+  background-color: blueviolet;
+}
+ul {
+  background-color: black;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+li {
+  float: left;
+  flex: 1;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #a920cd;
+
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10%;
+
+}
+</style>
+</head>
+<body>
+
+<ul>
+  <li><a href="/login">تسجيل الدخول</a></li>
+  <li><a href="/signup">إنشاء حساب</a></li>
+  <li><a href="/cherish">المتطوعون</a></li>
+  <li><a href="/about">من نحن</a></li>
+  <li><a href="/card">اصحاب البطاقة</a></li>
+  <li><a href="/logout">الخروج</a></li>
+</ul>
+
+
+<img src="/static/images/wishingwell-logo.png"  class="center">
+    </body>
+</html>
