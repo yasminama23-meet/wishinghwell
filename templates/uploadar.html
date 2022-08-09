@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+
+<ul>
+  <li><a href="/login">تسجيل الدخول</a></li>
+  <li><a href="/signup">إنشاء حساب</a></li>
+  <li><a href="/cherish">المتطوعون</a></li>
+  <li><a href="/about">من نحن</a></li>
+  <li><a href="/card">اصحاب البطاقة</a></li>
+  <li><a href="/logout">الخروج</a></li>
+</ul>
+<br>
+
+<!-- The Modal (contains the Sign Up form) -->
+<div id="id01" class="modal">
+  <span class="close" title="Close Modal"></span>
+  <form class="modal-content" method='POST' action="/uploadar">
+    <div class="container">
+      <h1>تحميل الصورة</h1>
+
+      <hr>
+      <label for="title"><b>عنوان</b></label>
+      <input type="text" placeholder="Title" name="title" required>
+
+      <label for="photo"><b>رابط الصورة</b></label>
+      <input type="text" placeholder="(has to be on the internet)" name="photo" required>
+
+      <label for="desc"><b>وصف</b></label>
+      <input type="text" placeholder="Enter Description" name="desc" required>
+
+    
+      <div class="clearfix">
+      
+        <button type="submit" class="signup"> إنشاء حساب</button>
+      </div>
+    </div>
+  </form>
+
+  </body>
+</html>

@@ -35,13 +35,13 @@ app.config['SECRET_KEY'] = 'super-secret-key'
 
 
 @app.route('/')
-def home():
-    return render_template('index.html')
+def homear():
+    return render_template('indexar.html')
 
 
 
 @app.route('/signup', methods=['GET','POST'])
-def signup():
+def signupar():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['pass1']
@@ -52,42 +52,42 @@ def signup():
                 login_session['user'] = auth.create_user_with_email_and_password(email, password)
                 user = {"username": username, "email": email, "password": password}
                 db.child("Users").child(login_session['user']['localId']).set(user)
-                return redirect(url_for('home'))
+                return redirect(url_for('homear'))
             except:
                 print('ERROR')
         else:
             print('not same password')
-    return render_template('signup.html')
+    return render_template('signupar.html')
 
     
 
 @app.route('/login', methods=['GET', 'POST'])
-def login():
+def loginar():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
         try:
             login_session['user'] = auth.sign_in_with_email_and_password(email, password)
             print(login_session['user']['localId'])
-            return redirect(url_for('home'))
+            return redirect(url_for('homear'))
         except:
             print('ERROR')
     else: 
-        return render_template('login.html')
+        return render_template('loginar.html')
 
 
 
 @app.route('/logout')
-def logout():
+def logoutar():
     if 'user' in login_session:
         login_session['user'] = None
         auth.current_user = None
-    return redirect(url_for('home'))
+    return redirect(url_for('homear'))
 
 
 
 @app.route('/upload', methods=['GET', 'POST'])
-def upload_image():
+def upload_imagear():
     if request.method == 'POST':
         title = request.form['title']
         photo = request.form['photo']
@@ -95,34 +95,34 @@ def upload_image():
         username = db.child("Users").child(login_session['user']['localId']).child('username').get().val()
         load = {'title':title, 'photo':photo, 'description':desc, 'user':username}
         db.child("Uploads").push(load)
-        return redirect(url_for('posts'))
-    return render_template('upload.html')
+        return redirect(url_for('postsar'))
+    return render_template('uploadar.html')
 
 
 @app.route('/posts')
-def posts():
+def postsar():
     total_posts = db.child('Uploads').get().val()
     total_names = total_posts.keys()
-    return render_template('posts.html', names=total_names, posts=total_posts)
+    return render_template('postsar.html', names=total_names, posts=total_posts)
 
 
 
 
 @app.route('/about')
-def about():
-    return render_template('about.html')
+def aboutar():
+    return render_template('aboutar.html')
 
 
 
 @app.route('/cherish')
-def cherish():
-    return render_template('cherish.html')
+def cherishar():
+    return render_template('cherishar.html')
 
 
 
 @app.route('/card')
-def card():
-    return render_template('card.html')
+def cardar():
+    return render_template('cardar.html')
 
 
 #Code goes above here
