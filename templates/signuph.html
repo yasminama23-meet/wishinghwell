@@ -2,12 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
-    <style>body {
+    <title>wishing well</title>    <style>
+
+
+body {
 
   background-color: blueviolet ;
 
 }
+
 
 
 
@@ -118,6 +121,9 @@ button:hover{
   transform: translateY(-180px);
   transition: .8s ease-in-out;
 }
+
+
+
 </style>
 </head>
 <body>
@@ -125,39 +131,44 @@ button:hover{
 
 
 <ul>
-  <li><a href="/login/ar">تسجيل الدخول</a></li>
-  <li><a href="/signup/ar">إنشاء حساب</a></li>
-  <li><a href="/cherish/ar">المتطوعون</a></li>
-  <li><a href="/about/ar">من نحن</a></li>
-  <li><a href="/card/ar">اصحاب البطاقة</a></li>
-  <li><a href="/logout/ar">الخروج</a></li>
+  <li><a href="/login/h">התחברות</a></li>
+  <li><a href="/signup/h">הירשם</a></li>
+  <li><a href="/cherish/h">להוקיר משתמשים</a></li>
+  <li><a href="/about/h">עלינו</a></li>
+  <li><a href="/logout/h">להתנתק</a></li>
+  <li><a href="/posts/h">לצפות בפוסטים</a></li>
 </ul>
 <br>
 
-<!-- The Modal (contains the Sign Up form) -->
 <div id="id01" class="modal">
   <span class="close" title="Close Modal"></span>
-  <form class="modal-content" method='POST' action="/uploadar">
+  <form class="modal-content" method='POST' action="/signup">
     <div class="container">
-      <h1>تحميل الصورة</h1>
-
+      <h1>הירשם</h1>
+      <p>Please fill in this form to create an account.</p>
       <hr>
-      <label for="title"><b>عنوان</b></label>
-      <input type="text" placeholder="Title" name="title" required>
+      <label for="email"><b>אימייל</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
 
-      <label for="photo"><b>رابط الصورة</b></label>
-      <input type="text" placeholder="(has to be on the internet)" name="photo" required>
+      <label for="username"><b>שם משתמש</b></label>
+      <input type="text" placeholder="Username" name="username" required>
 
-      <label for="desc"><b>وصف</b></label>
-      <input type="text" placeholder="Enter Description" name="desc" required>
+      <label for="psw"><b>סיסמה</b></label>
+      <input type="password" placeholder="Enter Password" name="pass1" required>
+
+      <label for="psw-repeat"><b>חזור על הסיסמה</b></label>
+      <input type="password" placeholder="Repeat Password" name="pass2" required>
 
     
+
+
       <div class="clearfix">
       
-        <button type="submit" class="signup"> إنشاء حساب</button>
+        <button type="submit" class="signup">הירשם</button>
       </div>
     </div>
   </form>
+</div>
 
-  </body>
+    </body>
 </html>

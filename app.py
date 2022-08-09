@@ -126,6 +126,22 @@ def card():
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @app.route('/ar')
 def homear():
     return render_template('indexar.html')
@@ -215,6 +231,110 @@ def cherishar():
 @app.route('/card/ar')
 def cardar():
     return render_template('cardar.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+@app.route('/h')
+def homeh():
+    return render_template('indexh.html')
+
+
+
+@app.route('/signup/h', methods=['GET','POST'])
+def signuph():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['pass1']
+        other_password = request.form['pass2']
+        username = request.form['username']
+        if password == other_password:
+            try:
+                login_session['user'] = auth.create_user_with_email_and_password(email, password)
+                user = {"username": username, "email": email, "password": password}
+                db.child("Users").child(login_session['user']['localId']).set(user)
+                return redirect(url_for('homeh'))
+            except:
+                print('ERROR')
+        else:
+            print('not same password')
+    return render_template('signuph.html')
+
+    
+
+@app.route('/login/h', methods=['GET', 'POST'])
+def loginh():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+        try:
+            login_session['user'] = auth.sign_in_with_email_and_password(email, password)
+            print(login_session['user']['localId'])
+            return redirect(url_for('homear'))
+        except:
+            print('ERROR')
+    else: 
+        return render_template('loginh.html')
+
+
+
+@app.route('/logout/h')
+def logouth():
+    if 'user' in login_session:
+        login_session['user'] = None
+        auth.current_user = None
+    return redirect(url_for('homeh'))
+
+
+
+@app.route('/upload/h', methods=['GET', 'POST'])
+def upload_imageh():
+    if request.method == 'POST':
+        title = request.form['title']
+        photo = request.form['photo']
+        desc  = request.form['desc']
+        username = db.child("Users").child(login_session['user']['localId']).child('username').get().val()
+        load = {'title':title, 'photo':photo, 'description':desc, 'user':username}
+        db.child("Uploads").push(load)
+        return redirect(url_for('postsar'))
+    return render_template('uploadh.html')
+
+
+@app.route('/posts/h')
+def postsh():
+    total_posts = db.child('Uploads').get().val()
+    total_names = total_posts.keys()
+    return render_template('postsh.html', names=total_names, posts=total_posts)
+
+
+
+
+@app.route('/about/h')
+def abouth():
+    return render_template('abouth.html')
+
+
+
+@app.route('/cherish/h')
+def cherishh():
+    return render_template('cherishh.html')
+
+
+
+@app.route('/card/h')
+def cardh():
+    return render_template('cardh.html')
+
+
 
 
 #Code goes above here
