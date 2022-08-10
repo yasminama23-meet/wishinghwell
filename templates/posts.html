@@ -22,10 +22,62 @@ body {
 }
 
 
+
+li {
+  display: inline;
+}
+li {
+  float: left;
+}
+
+a {
+  display: block;
+  padding: 8px;
+  background-color: blueviolet;
+}
+ul {
+  background-color: black;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+li {
+  float: left;
+  flex: 1;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #a920cd;
+
+}
     </style>
 
 </head>
 <body>
+
+<ul>
+  <li><a href="/login">login</a></li>
+  <li><a href="/signup">signup</a></li>
+  <li><a href="/cherish">cherish users</a></li>
+  <li><a href="/about">About us</a></li>
+  <li><a href="/upload">upload photo</a></li>
+  <li><a href="/logout">logout</a></li>
+  <li><a href="/">home page</a></li>
+</ul>
 
   <div id='posts'>
   {% for name in names %}
